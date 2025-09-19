@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Entrenamientos · Club Deportivo{% endblock %}
+{% block content %}
+  <div class="actions">
+    <a class="btn" href="{{ url_for('entrenamientos.crear') }}">Nuevo entrenamiento</a>
+  </div>
+  <div class="card">
+    <h1>Entrenamientos programados</h1>
+    {% if entrenamientos %}
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Entrenador</th>
+            <th>Actividad</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for entrenamiento in entrenamientos %}
+            <tr>
+              <td>{{ entrenamiento.fecha.strftime('%d/%m/%Y') if entrenamiento.fecha else entrenamiento.fecha }}</td>
+              <td>
+                {% if entrenamiento.entrenador %}
+                  {{ entrenamiento.entrenador.nombre }} {{ entrenamiento.entrenador.apellido }}
+                {% else %}
+                  Sin asignar
+                {% endif %}
+              </td>
+              <td>{{ entrenamiento.actividad.nombre_actividad if entrenamiento.actividad else 'Sin actividad' }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No hay entrenamientos programados.</p>
+    {% endif %}
+  </div>
+{% endblock %}

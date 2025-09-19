@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Actividades · Club Deportivo{% endblock %}
+{% block content %}
+  <div class="actions">
+    <a class="btn" href="{{ url_for('actividades.crear') }}">Nueva actividad</a>
+  </div>
+  <div class="card">
+    <h1>Actividades deportivas</h1>
+    {% if actividades %}
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Entrenamientos asociados</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for actividad in actividades %}
+            <tr>
+              <td>{{ actividad.nombre_actividad }}</td>
+              <td>{{ actividad.entrenamientos|length }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No hay actividades registradas.</p>
+    {% endif %}
+  </div>
+{% endblock %}
