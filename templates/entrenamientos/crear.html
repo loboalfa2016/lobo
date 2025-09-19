@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Nuevo entrenamiento · Club Deportivo{% endblock %}
+{% block content %}
+  <div class="card">
+    <h1>Programar entrenamiento</h1>
+    <form method="post">
+      <label for="id_entrenador">Entrenador</label>
+      <select id="id_entrenador" name="id_entrenador" required>
+        <option value="" disabled selected>Selecciona un entrenador</option>
+        {% for entrenador in entrenadores %}
+          <option value="{{ entrenador.id_usuario }}">{{ entrenador.nombre }} {{ entrenador.apellido }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="id_actividad">Actividad</label>
+      <select id="id_actividad" name="id_actividad" required>
+        <option value="" disabled selected>Selecciona una actividad</option>
+        {% for actividad in actividades %}
+          <option value="{{ actividad.id_actividad }}">{{ actividad.nombre_actividad }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="fecha">Fecha</label>
+      <input type="date" id="fecha" name="fecha" required>
+
+      <button class="btn" type="submit">Guardar</button>
+      <a class="btn" href="{{ url_for('entrenamientos.lista') }}" style="background:#6c757d;">Cancelar</a>
+    </form>
+  </div>
+{% endblock %}

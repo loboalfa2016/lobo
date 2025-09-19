@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Inicio · Club Deportivo{% endblock %}
+{% block content %}
+  <div class="card">
+    <h1>Bienvenido al sistema de gestión del Club Deportivo</h1>
+    <p>
+      Utiliza el menú superior para administrar usuarios, actividades, entrenamientos y generar reportes.
+    </p>
+    {% if not current_user.is_authenticated %}
+      <p>
+        Necesitas iniciar sesión para acceder a las funcionalidades administrativas.
+      </p>
+      <a class="btn" href="{{ url_for('auth.login') }}">Iniciar sesión</a>
+    {% else %}
+      <div class="actions">
+        <a class="btn" href="{{ url_for('usuarios.lista') }}">Gestionar usuarios</a>
+        <a class="btn" href="{{ url_for('actividades.lista') }}">Gestionar actividades</a>
+        <a class="btn" href="{{ url_for('entrenamientos.lista') }}">Gestionar entrenamientos</a>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
