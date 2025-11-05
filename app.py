@@ -9,7 +9,7 @@ app = Flask(__name__)
 url = urlparse(os.environ.get("railway"))
 
 db = mysql.connector.connect(
-    host=mysql.railway.internal,
+    host="mysql.railway.internal",
     user="root",
     password="MBlbRpQpwHsOGOilAPiJSVbZcmzyouuz",
     database="railway",
@@ -32,6 +32,7 @@ def agregar():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
+
 
 
 
